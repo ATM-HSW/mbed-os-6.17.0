@@ -133,7 +133,7 @@ class Exporter(with_metaclass(ABCMeta, object)):
         flags = self.toolchain_flags(self.toolchain)
         asm_defines = self.toolchain.get_compile_options(
             self.toolchain.get_symbols(for_asm=True),
-            filter(None, self.resources.inc_dirs),
+            [],
             for_asm=True)
         c_defines = ["-D" + symbol for symbol in self.toolchain.get_symbols()]
         flags['asm_flags'] += asm_defines
@@ -180,6 +180,7 @@ class Exporter(with_metaclass(ABCMeta, object)):
                 config_header.name)
             flags['c_flags'] += header_options
             flags['cxx_flags'] += header_options
+            flags['asm_flags'] += header_options
         return flags
 
     @property

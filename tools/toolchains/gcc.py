@@ -247,8 +247,6 @@ class GCC(mbedToolchain):
             opts += ["-I%s" % i for i in includes]
 
         config_header = self.get_config_header()
-        if config_header is not None:
-            opts = opts + self.get_config_option(config_header)
         return opts
 
     def match_coverage_patterns(self, source):
